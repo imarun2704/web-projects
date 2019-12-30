@@ -1,0 +1,15 @@
+body{
+    background-color: rgb(75, 150, 235);
+}
+.player1 {
+    text-align: center;
+    color: red;
+    font-size: 25px;
+    font-weight: bold;
+}
+.player4{
+    background:#ccc;
+    color: #ccc;
+}
+
+.active { background-color: black; }

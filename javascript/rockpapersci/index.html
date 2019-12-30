@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        RockpaperScissor
+    </title>
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body class="container bg-info" >
+
+    <div class="container " style="margin-top:230px ;">
+        <div class="card ">
+            <div class=" card bg-light text-dark">
+                <div class="d-flex">
+                    <div class="card-body">
+
+                        <div>
+                            <h1 class="display-3 text-center text-danger p player1" id="player1">Player 1</h1>
+                        </div>
+                        <div class="card mt-5">
+                            <h3 class="display-4 text-center " id="answer1">Rock</h3>
+                        </div>
+                        <div class="card bg-danger mt-5" style="width: 50%; margin-left: 8rem" >
+                            <div class="text-center text-white"><h4>score</h4></div>
+                            <div class="text-center text-white"><h5 id="score1">0</h5></div>
+                        </div>
+                    </div>
+                     <div>
+                            <div style="margin-left:70px;"> <button class="btn btn-warning display-4  " id="btn-new" style="margin-top:20px;">New</button></div>
+                        <div style="margin-left:70px;"> <button class="btn btn-warning display-4  " id="btn-roll" style="margin-top:240px;">Play</button></div>
+                        <div style="margin-top:10px;" > <input type="text" class="form-control input-sm finalScore" id="finalScore1" style="border: 1px solid red;" placeholder="SET FINAL SCORE"></div>
+                     </div>
+                    <div class="card-body">
+                        <div>
+                            <h1 class="display-3 text-center text-danger player2" id="player2">Player 2</h1>
+                        </div>
+                        <div class="card mt-5">
+                            <h3 class="display-4 text-center" id="answer2">Paper</h3>
+                        </div>
+                        <div class="text-center card bg-danger mt-5" style="width: 50%; margin-left: 8rem;">
+                            <div class="text-center text-white"><h4>score</h4></div>
+                            <div class="text-center text-white"> <h5 id="score2">0</h5></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script src="app.js"></script>
+</body>
+
+</html>
