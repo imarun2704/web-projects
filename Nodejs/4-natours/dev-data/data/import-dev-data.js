@@ -22,13 +22,13 @@ mongoose
 
 //READ JSON file
 
-const tours = fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf-8');
+const tours = fs.readFileSync(`${__dirname}/tours.json`, 'utf-8');
 
 //IMport data
 const importData = async () => {
   try {
     await Tour.create(tours);
-
+    console.log('Data successfully loaded');
   } catch (err) {
     console.log(err);
   }
