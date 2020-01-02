@@ -1,3 +1,4 @@
+
 const crypto = require('crypto');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
@@ -24,8 +25,8 @@ const createSendToken = (user, statusCode, res) => {
 
   res.cookie('jwt', token, cookieOptions);
 
-   //remove password from output
-   user.password = undefined;
+  //remove password from output
+  user.password = undefined;
 
   res.status(200).json({
     status: 'success',
@@ -48,10 +49,10 @@ exports.login = catchAsync(async (req, res, next) => {
   if (!email || !password) {
     next(new AppError('please provide email & password', 400));
   }
-
+  console.log(email, password);
   //2)check if user exists && pass is crct
   const user = await User.findOne({ email }).select('+password');
-
+  console.log(user, 'checki2ngh');
   if (!user || !(await user.correctPassword(password, user.password))) {
     return next(new AppError('Incorrect email or password', 401));
   }
