@@ -1,7 +1,7 @@
 const express = require('express');
 const tourController = require('../controllers/tourController');
 const authController = require('./../controllers/authController');
-// const reviewController = require('./../controllers/reviewController');
+const reviewController = require('./../controllers/reviewController');
 const reviewRouter = require('./../routes/reviewRoutes');
 
 const router = express.Router();
@@ -26,6 +26,15 @@ router
     authController.restrictTo('admin', 'lead-Guide', 'guide'),
     tourController.getMonthlyPlan
   );
+
+router
+  .route('/tours-within/:distance/center/:latlng/unit/:unit')
+  .get(tourController.getTourswithin);
+
+
+  router.route('/distances/:latlng/unit/:unit').get(tourController.getDistances);
+
+// /tours-within?distance=233&center = -40,45&unit=mi
 
 router
   .route('/')
