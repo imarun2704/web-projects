@@ -1,11 +1,11 @@
 /* eslint-disable */
 export const displayMap = locations => {
   mapboxgl.accessToken =
-    'pk.eyJ1Ijoiam9uYXNzY2htZWR0bWFubiIsImEiOiJjam54ZmM5N3gwNjAzM3dtZDNxYTVlMnd2In0.ytpI7V7w7cyT1Kq5rT9Z1A';
+    'pk.eyJ1IjoiYXJ1bmhhcGxhYno3NyIsImEiOiJjazR6NnB2bjYwMmJlM2VxbmxjZjZoM2p3In0.2M7fZahwVx04qYqh9n5KQw';
 
   var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/jonasschmedtmann/cjvi9q8jd04mi1cpgmg7ev3dy',
+    style: 'mapbox://styles/arunhaplabz77/ck4z7b0sv1ozb1cmjmx3c65fv',
     scrollZoom: false
     // center: [-118.113491, 34.111745],
     // zoom: 10,
