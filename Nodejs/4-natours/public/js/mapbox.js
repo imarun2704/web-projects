@@ -22,7 +22,7 @@ export const displayMap = locations => {
     // Add marker
     new mapboxgl.Marker({
       element: el,
-      anchor: 'bottom'
+      anchor: 'bottom' 
     })
       .setLngLat(loc.coordinates)
       .addTo(map);
