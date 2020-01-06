@@ -17,7 +17,7 @@ module.exports = class Email {
       // Sendgrid
       return 1;
     }
- 
+
     return nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: process.env.EMAIL_PORT,
@@ -50,7 +50,11 @@ module.exports = class Email {
 
     // create a transport and email
 
-    await this.newTransport().sendMail(mailOptions);
+    try {
+      await this.newTransport().sendMail(mailOptions);
+    } catch (err) {
+      console.log(err, 'ERRRRRR');
+    }
   }
 
   async sendWelcome() {
@@ -61,6 +65,6 @@ module.exports = class Email {
     await this.send(
       'passwordReset',
       'Your password reset token (valid for 10 min only'
-    )
+    );
   }
 };
