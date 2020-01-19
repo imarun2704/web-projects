@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-
+const bcrypt = require('bcryptjs');
 
 const employeeSchema = new mongoose.Schema(
   {
@@ -17,6 +17,7 @@ const employeeSchema = new mongoose.Schema(
               },
               orgID: {
                             type: mongoose.Schema.ObjectId,
+                            
                             ref: 'Org' 
                         },
                Address: {
@@ -30,6 +31,7 @@ const employeeSchema = new mongoose.Schema(
                         },
                  role: {
                           type: String,
+                          required: [true, 'Please provide ur role'],
                           enum: ['user','admin'],
                           default: 'user'
                         },
@@ -37,7 +39,7 @@ const employeeSchema = new mongoose.Schema(
                           type: String,
                           required: [true, 'Please provide a password'],
                           minlength: 4,
-                          select: false
+                          select:false
                         },
                         passwordConfirm: {
                           type: String,
@@ -48,11 +50,36 @@ const employeeSchema = new mongoose.Schema(
                               return el === this.password;
                             },
                             message: 'Passwords are not the same!'
-                          },
-                        }
+                          }
+                        },
+                        passwordChangedAt: Date
   });
 
+  employeeSchema.pre('save', async function(next) {
+    if(!this.isModified('password')) return next();
 
+    this.password = await bcrypt.hash(this.password, 12);
+
+    this.passwordConfirm = undefined;
+    next();
+  });
+
+  employeeSchema.methods.correctPassword = async function(
+    candidatePassword,
+    userPassword
+  ) {
+    return await bcrypt.compare(candidatePassword, userPassword);
+  };
+
+
+  employeeSchema.methods.changedPasswordAfter = function(JWTTimestamp) {
+    if(this.passwordChangedAt){
+      console.log(this.passwordChangedAt, JWTTimestamp);
+      const changedTimestamp = parseInt(this.passwordChangedAt.getTime()/1000,10);
+      return JWTTimestamp < changedTimestamp;
+    }
+    return false;
+  }
 
   const employee = mongoose.model('employee', employeeSchema);
 
