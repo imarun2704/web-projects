@@ -1,5 +1,5 @@
 const Org = require('./orgModel');
-
+const employee = require('./empModel');
 
 exports.createOrganisation = async(req, res) => {
     try{
@@ -76,7 +76,12 @@ exports.updateOrganisation = async(req, res) => {
 };
 exports.deleteOrganisation = async(req, res) => {
     try{
-
+            const findOrganisation = await Org.findById(req.params.id);
+         const deletingArray = await employee.deleteMany({
+              _id:{
+                  $in:findOrganisation.empID    
+              }
+          });
         const data = await Org.findByIdAndDelete(req.params.id);
         res.status(201).json({
             status: 'success',

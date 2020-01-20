@@ -15,14 +15,11 @@ exports.createEmployee = catchAsync(async(req, res, next) => {
     
 
     const data = await employee.create(req.body);
-    Org
-    .findOne({ _id: data.orgID })
-    .populate('empID') // only works if we pushed refs to person.eventsAttended
-    .exec(function(err, person) {
-        if (err) return handleError(err);
-        console.log(Org);
-    });
    
+   const toUpdate =  await Org.findOneAndUpdate({ _id: data.orgID}, {$push: {empID: data._id}}, {new: true});
+
+        console.log(toUpdate);
+       
     const token = signToken(data._id); 
        
        res.status(201).json({

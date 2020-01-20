@@ -8,9 +8,7 @@ const orgSchema = new mongoose.Schema(
           type: String,
           required: [true, 'Please provide name']
       },
-      oid: {
-        type: String
-      },
+     
 
       address: {
           type: String
