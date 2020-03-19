@@ -64,16 +64,12 @@ exports.protect = catchAsync(async (req, res, next) => {
           token = req.headers.authorization.split(' ')[1];
       
       }
-      
-      console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk',token);
-      if(!token) {
+            if(!token) {
           return next(new AppError('you are not logged in!! pls log in', 401));
       }
 
       const decoded = await promisify(jwt.verify)(token, 'my-ultra-key-and-more-secure-key');
-       console.log(decoded,' fresher user cgheck');
       const freshUser = await employee.findById(decoded.id);
-      console.log(freshUser, 'hhhhhhhhhhhhhhhhhhhhhh');
       if(!freshUser) {
           return next(new AppError('The user belonging to this token does no longer exist.', 401));
       }
